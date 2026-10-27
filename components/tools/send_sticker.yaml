@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Tool
+metadata:
+  name: send_sticker
+  label:
+    zh_Hans: 发表情包
+    en_US: Send a sticker
+  description:
+    zh_Hans: 直接从图库里挑一张表情包发给对方（图片会立刻发出，不需要用户命令）。
+    en_US: Pick a sticker from the local library and send it right away.
+spec:
+  parameters:
+    type: object
+    properties:
+      mood:
+        type: string
+        description: 情绪分类，可选：happy / angry / sad / shy / confused / daily / like / meow / sleep / surprised / work / sigh。不确定就留空。
+      keyword:
+        type: string
+        description: 想找特定的一张时用的中文关键词，如 生气、比心、摸鱼、猫爪、求饶、躺平。可留空。
+    required: []
+  llm_prompt: |
+    你想用一张表情包代替说话、或者给回复加点情绪时调用它。
+    图片会直接发到对话里，发完只需要回一两句短的，不要再用文字描述这张图。
+    一般挑 mood（情绪），想找特定的图再给 keyword。
+execution:
+  python:
+    path: send_sticker.py
+    attr: SendSticker
