@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Plugin
+metadata:
+  author: feiyu
+  name: StickerSender
+  version: 0.1.0
+  description:
+    zh_Hans: 让机器人回消息时主动带表情包：模型可调用 send_sticker 直接把图发出去（不需要用户下指令）。
+    en_US: Let the bot send memes/stickers proactively through a model-callable tool.
+  label:
+    zh_Hans: 表情包直发
+    en_US: Sticker Sender
+  icon: assets/icon.svg
+  repository: local
+  license: MIT
+spec:
+  config: []
+  components:
+    Tool:
+      fromDirs:
+        - path: components/tools/
+execution:
+  python:
+    path: main.py
+    attr: StickerSenderPlugin
